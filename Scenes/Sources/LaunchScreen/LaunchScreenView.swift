@@ -15,7 +15,6 @@ final class LaunchScreenView: UIView {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = "E-book"
-        view.textColor = .black
         return view
     }()
     
