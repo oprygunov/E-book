@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8231FBCD29CAF7A900028C83 /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8231FBCB29CAF7A800028C83 /* SFProText-Semibold.ttf */; };
+		8231FBCE29CAF7A900028C83 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8231FBCC29CAF7A800028C83 /* SFProText-Regular.ttf */; };
+		8231FBD129CAFC0300028C83 /* CeraPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8231FBCF29CAFC0300028C83 /* CeraPro-Medium.ttf */; };
+		8231FBD229CAFC0300028C83 /* CeraPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8231FBD029CAFC0300028C83 /* CeraPro-Bold.ttf */; };
+		8231FBD529CAFC7900028C83 /* PTRootUI-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8231FBD329CAFC7900028C83 /* PTRootUI-Regular.ttf */; };
+		8231FBD629CAFC7900028C83 /* PTRootUI-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8231FBD429CAFC7900028C83 /* PTRootUI-Medium.ttf */; };
 		CED5CF8129C99A2F0003137B /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = CED5CF8029C99A2F0003137B /* UIComponents */; };
 		CEDA642829C9951900CFCAC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA642729C9951900CFCAC4 /* AppDelegate.swift */; };
 		CEDA642A29C9951900CFCAC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA642929C9951900CFCAC4 /* SceneDelegate.swift */; };
@@ -37,6 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8231FBCB29CAF7A800028C83 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.ttf"; sourceTree = "<group>"; };
+		8231FBCC29CAF7A800028C83 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
+		8231FBCF29CAFC0300028C83 /* CeraPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CeraPro-Medium.ttf"; sourceTree = "<group>"; };
+		8231FBD029CAFC0300028C83 /* CeraPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CeraPro-Bold.ttf"; sourceTree = "<group>"; };
+		8231FBD329CAFC7900028C83 /* PTRootUI-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Regular.ttf"; sourceTree = "<group>"; };
+		8231FBD429CAFC7900028C83 /* PTRootUI-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Medium.ttf"; sourceTree = "<group>"; };
 		CED5CF7F29C999F10003137B /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UIComponents; path = ../../UIComponents; sourceTree = "<group>"; };
 		CEDA642429C9951900CFCAC4 /* E-book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "E-book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDA642729C9951900CFCAC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +92,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8231FBCA29CAF74E00028C83 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8231FBD429CAFC7900028C83 /* PTRootUI-Medium.ttf */,
+				8231FBD329CAFC7900028C83 /* PTRootUI-Regular.ttf */,
+				8231FBD029CAFC0300028C83 /* CeraPro-Bold.ttf */,
+				8231FBCF29CAFC0300028C83 /* CeraPro-Medium.ttf */,
+				8231FBCC29CAF7A800028C83 /* SFProText-Regular.ttf */,
+				8231FBCB29CAF7A800028C83 /* SFProText-Semibold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		CEDA641B29C9951900CFCAC4 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +137,7 @@
 				CEDA643029C9951B00CFCAC4 /* Assets.xcassets */,
 				CEDA643229C9951B00CFCAC4 /* LaunchScreen.storyboard */,
 				CEDA643529C9951B00CFCAC4 /* Info.plist */,
+				8231FBCA29CAF74E00028C83 /* Fonts */,
 			);
 			path = "E-book";
 			sourceTree = "<group>";
@@ -249,7 +275,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEDA643429C9951B00CFCAC4 /* LaunchScreen.storyboard in Resources */,
+				8231FBD629CAFC7900028C83 /* PTRootUI-Medium.ttf in Resources */,
 				CEDA643129C9951B00CFCAC4 /* Assets.xcassets in Resources */,
+				8231FBCD29CAF7A900028C83 /* SFProText-Semibold.ttf in Resources */,
+				8231FBD129CAFC0300028C83 /* CeraPro-Medium.ttf in Resources */,
+				8231FBD529CAFC7900028C83 /* PTRootUI-Regular.ttf in Resources */,
+				8231FBD229CAFC0300028C83 /* CeraPro-Bold.ttf in Resources */,
+				8231FBCE29CAF7A900028C83 /* SFProText-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
