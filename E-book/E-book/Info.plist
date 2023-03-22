@@ -19,5 +19,14 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PTRootUI-Medium.ttf</string>
+		<string>PTRootUI-Regular.ttf</string>
+		<string>CeraPro-Bold.ttf</string>
+		<string>CeraPro-Medium.ttf</string>
+		<string>SFProText-Regular.ttf</string>
+		<string>SFProText-Semibold.ttf</string>
+	</array>
 </dict>
 </plist>
