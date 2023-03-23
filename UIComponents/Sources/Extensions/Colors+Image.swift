@@ -29,8 +29,11 @@ public extension UIColor {
     static var backgroundTabBar: UIColor? {
         .init(named: "backgroundTabBar", in: Bundle.module, compatibleWith: nil)
     }
-    static var ButtonActive: UIColor? {
-        .init(named: "ButtonActive", in: Bundle.module, compatibleWith: nil)
+    static var buttonBorder: UIColor? {
+        .init(named: "buttonBorder", in: Bundle.module, compatibleWith: nil)
+    }
+    static var buttonActive: UIColor? {
+        .init(named: "buttonActive", in: Bundle.module, compatibleWith: nil)
     }
     static var buttonDisable: UIColor? {
         .init(named: "buttonDisable", in: Bundle.module, compatibleWith: nil)

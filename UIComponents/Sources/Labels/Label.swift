@@ -7,9 +7,7 @@
 
 import UIKit
 
-public class Label: UIView {
-
-    private var namedFont: String = "PTRootUI-Regular"
+public class Label: View {
 
     public struct Model {
         var text: String?
@@ -31,15 +29,42 @@ public class Label: UIView {
         }
     }
 
+    public var text: String? {
+        didSet {
+            label.text = text
+        }
+    }
+    
     public var textSize: CGFloat? {
         didSet {
-            label.font = UIFont(name: "PTRootUI-Regular", size: textSize ?? 17)
+            label.font = UIFont(name: textFont?.string() ?? "", size: textSize ?? 17)
         }
     }
 
-    public var textFont: UIFont? {
+    public var textFont: Fonts? {
         didSet {
-            label.font = textFont
+            label.font = UIFont(name: textFont?.string() ?? "", size: textSize ?? 17)
+        }
+    }
+    
+    public var textColor: UIColor? {
+        didSet {
+            label.textColor = textColor
+        }
+    }
+    
+    public var isSelected: Bool? {
+        didSet {
+            if isSelected ?? true {
+                let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+                let underlinedText = NSAttributedString(string: viewModel.text ?? "", attributes: underlineAttribute)
+                label.attributedText = underlinedText
+            }
+            else {
+                //let underlineAttribute = [NSAttributedString.Key.underlineStyle: ]
+                let attributedText = NSAttributedString(string: viewModel.text ?? "", attributes: [:])
+                    label.attributedText = attributedText
+            }
         }
     }
 
@@ -50,6 +75,23 @@ public class Label: UIView {
         case ceraMedium
         case sfRegular
         case sfSemibold
+        
+        func string() -> String {
+            switch self {
+            case .ptRootRegular:
+                return "PTRootUI-Regular"
+            case .ptRootMedium:
+                return "PTRootUI-Medium"
+            case .ceraBold:
+                return "CeraPro-Bold"
+            case .ceraMedium:
+                return "CeraPro-Medium"
+            case .sfRegular:
+                return "SFProText-Regular"
+            case .sfSemibold:
+                return "SFProText-Semibold"
+            }
+        }
     }
 
     private lazy var label: UILabel = {
@@ -61,47 +103,21 @@ public class Label: UIView {
     }()
 
    public init(size: CGFloat, font: Fonts) {
-        switch font {
-        case .ptRootRegular:
-            namedFont = "PTRootUI-Regular"
-        case .ptRootMedium:
-            namedFont = "PTRootUI-Medium"
-        case .ceraBold:
-            namedFont = "CeraPro-Bold"
-        case .ceraMedium:
-            namedFont = "CeraPro-Medium"
-        case .sfRegular:
-            namedFont = "SFProText-Regular"
-        case .sfSemibold:
-            namedFont = "SFProText-Semibold"
-        }
         super.init(frame: .zero)
 
-        label.font = UIFont(name: namedFont, size: size)
+       textFont = font
+       textSize = size
+       label.font = UIFont(name: font.string(), size: size)
+       isUserInteractionEnabled = false
 
-        setupView()
-        setupContent()
-        setupLayout()
+       addSubview(label)
+
+       label.pinToSuperview()
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    func setupView() {
-        isUserInteractionEnabled = false
-    }
-
-    func setupContent() {
-        addSubview(label)
-    }
-
-    func setupLayout() {
-        label.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        label.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        label.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 
     public override func setContentHuggingPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) {
