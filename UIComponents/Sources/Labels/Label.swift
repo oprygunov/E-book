@@ -57,12 +57,11 @@ public class Label: View {
         didSet {
             if isSelected ?? true {
                 let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
-                let underlinedText = NSAttributedString(string: viewModel.text ?? "", attributes: underlineAttribute)
+                let underlinedText = NSAttributedString(string: text ?? "", attributes: underlineAttribute)
                 label.attributedText = underlinedText
             }
             else {
-                //let underlineAttribute = [NSAttributedString.Key.underlineStyle: ]
-                let attributedText = NSAttributedString(string: viewModel.text ?? "", attributes: [:])
+                let attributedText = NSAttributedString(string: text ?? "", attributes: [:])
                     label.attributedText = attributedText
             }
         }

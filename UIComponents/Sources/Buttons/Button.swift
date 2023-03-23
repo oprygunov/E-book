@@ -9,7 +9,7 @@ import UIKit
 
 public class Button: UIControl {
     
-    var colorButton: Color?
+    var styleButton: Style?
     
     var actionHandler: () -> Void = {}
 
@@ -31,58 +31,15 @@ public class Button: UIControl {
         }
     }
     
-//    public override var isSelected: Bool {
-//        didSet {
-//            if !isSelected {
-//                switch colorButton {
-//                case nil:
-//                    title.textColor = .buttonDisable
-//                    image.tintColor = .buttonDisable
-//                case .some(let colors):
-//                    switch colors {
-//                    case .first:
-//                        backgroundColor = .buttonDisable
-//                        image.tintColor = .buttonDisable
-//                    case .second:
-//                        backgroundColor = .buttonOutlineDisable
-//                        title.textColor = .buttonDisable
-//                        image.tintColor = .buttonDisable
-//                        layer.borderWidth = 1
-//                        layer.borderColor = UIColor.buttonBorder?.cgColor
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
     public override var isEnabled: Bool {
         didSet {
-            if !isEnabled {
-                switch colorButton {
-                case nil:
-                    title.textColor = .buttonDisable
-                    image.tintColor = .buttonDisable
-                case .some(let colors):
-                    switch colors {
-                    case .first:
-                        backgroundColor = .buttonDisable
-                        image.tintColor = .buttonDisable
-
-                    case .second:
-                        backgroundColor = .buttonOutlineDisable
-                        title.textColor = .buttonDisable
-                        image.tintColor = .buttonDisable
-                        layer.borderWidth = 1
-                        layer.borderColor = UIColor.buttonBorder?.cgColor
-                    }
-                }
-            }
+            isEnabled ? setDefaultColor() : setDisabledColor()
         }
     }
     
-    public enum Color {
-        case first
-        case second
+    public enum Style {
+        case primary
+        case secondary
     }
     
     public enum Icon {
@@ -92,10 +49,10 @@ public class Button: UIControl {
         case headphone
     }
     
-    public enum Width {
+    public enum Size {
         case small
         case medium
-        case long
+        case large
     }
     
     private let title: Label = {
@@ -116,35 +73,13 @@ public class Button: UIControl {
         return view
     }()
     
-    public init(text: String, color: Color? = nil, width: Width? = nil, icon: Icon? = nil, iconSpacing: CGFloat? = nil) {
+    public init(text: String, style: Style? = nil, size: Size? = nil, icon: Icon? = nil, iconSpacing: CGFloat? = nil) {
         super.init(frame: .zero)
         
-        colorButton = color
+        styleButton = style
         title.text = text
         
-        switch color {
-        case nil:
-            setColor(
-                content: .buttonActive
-            )
-        case .some(let colors):
-            switch colors {
-            case .first:
-                setColor(
-                    background: .buttonActive,
-                    content: .separator,
-                    highlighted: .buttonHover
-                )
-            case .second:
-                setColor(
-                    background: .buttonOutlineActive,
-                    content: .buttonActive,
-                    highlighted: .buttonOutlineHover,
-                    border: .buttonBorder,
-                    highlightedBorder: .buttonActive
-                )
-            }
-        }
+        setDefaultColor()
         
         switch icon {
         case nil:
@@ -154,7 +89,7 @@ public class Button: UIControl {
             case .apple:
                 image.image = UIImage(systemName: "apple.logo")
             case .google:
-                image.image = UIImage(systemName: "apple.logo")
+                image.image = Image(named: "icongoogle")
             case .book:
                 image.image = UIImage(systemName: "book")
             case .headphone:
@@ -173,16 +108,16 @@ public class Button: UIControl {
                 
         addSubview(stack)
         
-        switch width {
+        switch size {
         case nil:
-            stack.pinToSuperview(padding: 5)
+            stack.pinToSuperview()
         case .some(let widthButton):
             switch widthButton {
             case .small:
                 widthAnchor ~= 164
             case .medium:
                 widthAnchor ~= 231
-            case .long:
+            case .large:
                 break
             }
             layer.cornerRadius = 10
@@ -191,14 +126,25 @@ public class Button: UIControl {
             stack.centerYAnchor ~= centerYAnchor
         }
         
-        addAction(
-            UIAction(
-                handler: { _ in
-                    self.actionHandler()
-                    print("press")
-                }
-            ),
-            for: .touchUpInside
+        setEventColor(
+            event: .touchDown,
+            textUnderline: true,
+            primaryColor: .buttonHover,
+            secondaryColor: .buttonActive
+        )
+        
+        setEventColor(
+            event: .touchUpInside,
+            textUnderline: false,
+            primaryColor: .buttonActive,
+            secondaryColor: .buttonBorder
+        )
+        
+        setEventColor(
+            event: .touchUpOutside,
+            textUnderline: false,
+            primaryColor: .buttonActive,
+            secondaryColor: .buttonBorder
         )
     }
     
@@ -206,65 +152,96 @@ public class Button: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setColor(background: UIColor? = nil, content: UIColor? = nil, highlighted: UIColor? = nil, border: UIColor? = nil, highlightedBorder: UIColor? = nil) {
+    private func setColor(background: UIColor? = nil, content: UIColor? = nil, border: UIColor? = nil, textUnderline: Bool? = nil) {
         
-        title.textColor = content
-        image.tintColor = content
+        if content != nil {
+            title.textColor = content
+            image.tintColor = content
+        }
         
         if background != nil {
             backgroundColor = background
-            
-            addAction(.init(handler: { _ in
-                self.backgroundColor = highlighted
-                if highlightedBorder != nil {
-                    self.layer.borderWidth = 1
-                    self.layer.borderColor = highlightedBorder?.cgColor
-                }
-            }), for: .touchDown)
-            addAction(.init(handler: { _ in
-                self.backgroundColor = background
-                if highlightedBorder != nil {
-                    if border != nil {
-                        self.layer.borderWidth = 1
-                        self.layer.borderColor = border?.cgColor
-                    }
-                }
-            }), for: .touchUpInside)
-            addAction(.init(handler: { _ in
-                self.backgroundColor = background
-                if highlightedBorder != nil {
-                    if border != nil {
-                        self.layer.borderWidth = 1
-                        self.layer.borderColor = border?.cgColor
-                    }
-                }
-            }), for: .touchUpOutside)
-        }
-        else {
-            addAction(.init(handler: { _ in
-                self.title.isSelected = true
-            }), for: .touchDown)
-            addAction(.init(handler: { _ in
-                self.title.isSelected = false
-            }), for: .touchUpInside)
-            addAction(.init(handler: { _ in
-                self.title.isSelected = false
-            }), for: .touchUpOutside)
         }
         
         if border != nil {
             layer.borderWidth = 1
             layer.borderColor = border?.cgColor
         }
+        
+        guard let text = textUnderline else { return }
+        if text {
+            title.isSelected = true
+        }
+        else {
+            title.isSelected = false
+        }
+    }
+    
+    private func setDefaultColor() {
+        switch styleButton {
+        case nil:
+            setColor(
+                content: .buttonActive
+            )
+        case .primary:
+            setColor(
+                background: .buttonActive,
+                content: .separator
+            )
+        case .secondary:
+            setColor(
+                background: .buttonOutlineActive,
+                content: .buttonActive,
+                border: .buttonBorder
+            )
+        }
+    }
+    
+    private func setDisabledColor() {
+        switch styleButton {
+        case nil:
+            setColor(
+                content: .buttonDisable
+            )
+        case .primary:
+            setColor(
+                background: .buttonDisable,
+                content: .buttonOutlineDisable
+            )
+        case .secondary:
+            setColor(
+                background: .buttonOutlineDisable,
+                content: .buttonDisable,
+                border: .buttonBorder
+            )
+        }
+    }
+    
+    private func setEventColor(event: UIControl.Event, textUnderline: Bool, primaryColor: UIColor?, secondaryColor: UIColor?) {
+        addAction(
+            UIAction(
+                handler: { _ in
+                    switch self.styleButton {
+                    case nil:
+                        self.setColor(textUnderline: textUnderline)
+                    case .primary:
+                        self.setColor(background: primaryColor)
+                    case .secondary:
+                        self.setColor(border: secondaryColor)
+                    }
+                }
+            ),
+            for: event
+        )
     }
     
     override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
             
-        switch colorButton {
-        case .some(.first):
+        switch styleButton {
+        case .primary:
             break
-        case .some(.second):
+        case .secondary:
             layer.borderColor = UIColor.buttonBorder?.cgColor
         default:
             layer.borderColor = nil
