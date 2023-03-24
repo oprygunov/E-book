@@ -79,14 +79,6 @@ public class LoginTextFieldView: UIView {
         return view
     }()
 
-    private lazy var textStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, loginTextField])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        return stackView
-    }()
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -98,10 +90,14 @@ public class LoginTextFieldView: UIView {
 
     private func setupView() {
         backgroundColor = .clear
-        addSubview(textStackView)
-        loginTextField.leadingAnchor ~= leadingAnchor
-        titleLabel.leadingAnchor ~= leadingAnchor + 24
-        textStackView.pinToSuperview()
+        addSubview(loginTextField)
+        addSubview(titleLabel)
+        loginTextField.leftAnchor ~= leftAnchor
+        loginTextField.rightAnchor ~= rightAnchor
+        loginTextField.bottomAnchor ~= bottomAnchor
+        titleLabel.leftAnchor ~= loginTextField.leftAnchor + 24
+        titleLabel.topAnchor ~= topAnchor
+        titleLabel.bottomAnchor ~= loginTextField.topAnchor - 10
     }
 }
 
