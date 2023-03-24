@@ -229,6 +229,9 @@ public class Button: UIControl {
                     case .secondary:
                         self.setColor(border: secondaryColor)
                     }
+                    if event == .touchUpInside {
+                        self.actionHandler()
+                    }
                 }
             ),
             for: event
