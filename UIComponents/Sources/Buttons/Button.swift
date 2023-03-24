@@ -89,7 +89,7 @@ public class Button: UIControl {
             case .apple:
                 image.image = UIImage(systemName: "apple.logo")
             case .google:
-                image.image = Image(named: "icongoogle")
+                image.image = Image(named: "Google-icon")
             case .book:
                 image.image = UIImage(systemName: "book")
             case .headphone:
