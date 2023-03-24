@@ -11,7 +11,7 @@ public class Button: UIControl {
     
     var styleButton: Style?
     
-    var actionHandler: () -> Void = {}
+    public var actionHandler: () -> Void = {}
 
     public var textSize: CGFloat? {
         didSet {
