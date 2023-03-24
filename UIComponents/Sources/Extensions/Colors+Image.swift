@@ -29,6 +29,9 @@ public extension UIColor {
     static var backgroundTabBar: UIColor? {
         .init(named: "backgroundTabBar", in: Bundle.module, compatibleWith: nil)
     }
+    static var backgroundLaunch: UIColor? {
+        .init(named: "backgroundLaunch", in: Bundle.module, compatibleWith: nil)
+    }
     static var buttonBorder: UIColor? {
         .init(named: "buttonBorder", in: Bundle.module, compatibleWith: nil)
     }
