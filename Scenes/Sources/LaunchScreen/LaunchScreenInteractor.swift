@@ -11,6 +11,8 @@ import Foundation
 final class LaunchScreenInteractor {
     private let presenter: LaunchScreenPresentationLogic
     private let worker: LaunchScreenWorkingLogic
+    
+    private var model: LaunchScreen.Model?
 
     init(presenter: LaunchScreenPresentationLogic, worker: LaunchScreenWorkingLogic) {
         self.presenter = presenter
@@ -19,8 +21,29 @@ final class LaunchScreenInteractor {
 }
 
 extension LaunchScreenInteractor: LaunchScreenBusinessLogic {
-    func request(_ request: LaunchScreen.Something.Request) {
+    func request(_ request: LaunchScreen.Fetch.Request) {
 
+        let group = DispatchGroup()
+
+        group.enter()
+        worker.fetch { result in
+            group.leave()
+            switch result {
+            case .success(let model):
+                self.model = model
+            case .failure:
+                break
+            }
+        }
+
+        group.enter()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            self.presenter.present(LaunchScreen.Fetch.Response(model: self.model))
+        }
     }
 }
 

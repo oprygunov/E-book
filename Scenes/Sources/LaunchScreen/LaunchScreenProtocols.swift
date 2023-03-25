@@ -9,21 +9,24 @@
 import Foundation
 
 protocol LaunchScreenBusinessLogic: AnyObject {
-    func request(_ request: LaunchScreen.Something.Request)
+    func request(_ request: LaunchScreen.Fetch.Request)
 }
 
 protocol LaunchScreenPresentationLogic: AnyObject {
-    func present(_ response: LaunchScreen.Something.Response)
+    func present(_ response: LaunchScreen.Fetch.Response)
 }
 
 protocol LaunchScreenDisplayLogic: AnyObject {
-    func display(_ viewModel: LaunchScreen.Something.ViewModel)
+    func display(_ viewModel: LaunchScreen.Fetch.ViewModel)
 }
 
 protocol LaunchScreenRoutingLogic: AnyObject {
-    func show()
+    func showWelcome()
+    func showTabs()
 }
 
 protocol LaunchScreenDataStore: AnyObject {}
 
-protocol LaunchScreenWorkingLogic: AnyObject {}
+protocol LaunchScreenWorkingLogic: AnyObject {
+    func fetch(_ completion: LaunchScreen.FetchCompletion?)
+}

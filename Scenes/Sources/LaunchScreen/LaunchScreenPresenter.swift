@@ -15,7 +15,22 @@ final class LaunchScreenPresenter {
 }
 
 extension LaunchScreenPresenter: LaunchScreenPresentationLogic {
-    func present(_ response: LaunchScreen.Something.Response) {
-        view?.display(LaunchScreen.Something.ViewModel())
+    func present(_ response: LaunchScreen.Fetch.Response) {
+        view?.display(
+            LaunchScreen.Fetch.ViewModel(
+                route: response.model?.route() ?? .welcome
+            )
+        )
+    }
+}
+
+private extension LaunchScreen.Model {
+    func route() -> LaunchScreen.Route {
+        if didLogin {
+            return .tabs
+        }
+        else {
+            return .welcome
+        }
     }
 }

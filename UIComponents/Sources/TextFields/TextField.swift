@@ -74,7 +74,7 @@ public class TextField: UITextField {
         layer.borderWidth = 1
         layer.cornerRadius = 10
         attributedPlaceholder = NSAttributedString(string: placeholder ?? "Ваш текст", attributes: [NSAttributedString.Key.foregroundColor: .textSecond ?? UIColor.lightGray])
-        tintColor = .ButtonActive
+        tintColor = .buttonActive
         font = UIFont(name: "SFProText-Regular", size: 16)
         addAction(
             UIAction(

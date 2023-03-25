@@ -12,17 +12,26 @@ final class LaunchScreenViewController: UIViewController {
     var interactor: LaunchScreenBusinessLogic?
     var router: LaunchScreenRoutingLogic?
 
-    private let rootView = LaunchScreenView()
+    private lazy var rootView = LaunchScreenView()
 
     override func loadView() {
         super.loadView()
         view = rootView
     }
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        interactor?.request(LaunchScreen.Fetch.Request())
+    }
 }
 
 extension LaunchScreenViewController: LaunchScreenDisplayLogic {
-    func display(_ viewModel: LaunchScreen.Something.ViewModel) {
-
+    func display(_ viewModel: LaunchScreen.Fetch.ViewModel) {
+        switch viewModel.route {
+        case .welcome:
+            router?.showWelcome()
+        case .tabs:
+            router?.showTabs()
+        }
     }
 }

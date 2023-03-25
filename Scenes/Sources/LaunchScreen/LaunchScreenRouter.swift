@@ -19,7 +19,14 @@ final class LaunchScreenRouter {
 }
 
 extension LaunchScreenRouter: LaunchScreenRoutingLogic {
-    func show() {
-
+    func showWelcome() {
+        print("не залогинен")
+        viewController?.navigationController?.viewControllers = [WelcomeBuilder.build()]
     }
+    
+    func showTabs() {
+        print("залогинен")
+        viewController?.navigationController?.viewControllers = [WelcomeBuilder.build()]
+    }
+
 }
