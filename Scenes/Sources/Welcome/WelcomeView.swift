@@ -100,7 +100,10 @@ final class WelcomeView: View {
         
         loginButton.leftAnchor ~= leftAnchor + 16
         loginButton.rightAnchor ~= rightAnchor - 16
-        loginButton.bottomAnchor ~= safeAreaLayoutGuide.bottomAnchor
+        //loginButton.bottomAnchor ~= safeAreaLayoutGuide.bottomAnchor
+        loginButton.bottomAnchor <= bottomAnchor - 16
+        let bottom = loginButton.bottomAnchor ~= safeAreaLayoutGuide.bottomAnchor
+        bottom.priority = .defaultHigh
         
         registrationButton.leftAnchor ~= leftAnchor + 16
         registrationButton.rightAnchor ~= rightAnchor - 16
