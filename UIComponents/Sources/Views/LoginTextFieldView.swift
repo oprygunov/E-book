@@ -53,11 +53,11 @@ public class LoginTextFieldView: UIView {
         }
     }
 
-    enum Action {
+    public enum Action {
         case text(String)
     }
 
-    var actionHandler: (Action) -> Void = {_ in }
+    public var actionHandler: (Action) -> Void = {_ in }
 
     private let titleLabel: UILabel = {
         let view = UILabel()
@@ -97,6 +97,6 @@ public class LoginTextFieldView: UIView {
         loginTextField.bottomAnchor ~= bottomAnchor
         titleLabel.leftAnchor ~= loginTextField.leftAnchor + 24
         titleLabel.topAnchor ~= topAnchor
-        titleLabel.bottomAnchor ~= loginTextField.topAnchor - 10
+        titleLabel.bottomAnchor ~= loginTextField.topAnchor - 11
     }
 }
