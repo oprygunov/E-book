@@ -26,22 +26,20 @@ extension LaunchScreenInteractor: LaunchScreenBusinessLogic {
         let group = DispatchGroup()
 
         group.enter()
-        worker.fetch { result in
-            group.leave()
-            switch result {
-            case .success(let model):
-                self.model = model
-            case .failure:
-                break
-            }
-        }
-
-        group.enter()
+        //имитация работы загрузки приложения, 2 секунды ожидает и переходит дальше
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             group.leave()
         }
 
         group.notify(queue: .main) {
+            self.worker.fetch { result in
+                switch result {
+                case .success(let model):
+                    self.model = model
+                case .failure:
+                    break
+                }
+            }
             self.presenter.present(LaunchScreen.Fetch.Response(model: self.model))
         }
     }
