@@ -53,6 +53,12 @@ public class Label: View {
         }
     }
     
+    public var attributedText: NSAttributedString? {
+        didSet {
+            label.attributedText = attributedText
+        }
+    }
+    
     public var isSelected: Bool? {
         didSet {
             if isSelected ?? true {

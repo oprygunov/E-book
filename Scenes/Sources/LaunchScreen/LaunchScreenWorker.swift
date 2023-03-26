@@ -8,4 +8,14 @@
 
 import Foundation
 
-final class LaunchScreenWorker: LaunchScreenWorkingLogic {}
+final class LaunchScreenWorker: LaunchScreenWorkingLogic {
+    func fetch(_ completion: LaunchScreen.FetchCompletion?) {
+        completion?(
+            .success(
+                .init(
+                    didLogin: false
+                )
+            )
+        )
+    }
+}

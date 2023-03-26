@@ -9,11 +9,26 @@
 import Foundation
 
 enum LaunchScreen {
-    enum Something {
+    enum Fetch {
         struct Request {}
 
-        struct Response {}
+        struct Response {
+            var model: Model?
+        }
 
-        struct ViewModel {}
+        struct ViewModel {
+            var route: Route
+        }
     }
+    
+    struct Model {
+        var didLogin: Bool
+    }
+    
+    enum Route {
+        case welcome
+        case tabs
+    }
+    
+    typealias FetchCompletion = (Result<Model, Error>) -> Void
 }
