@@ -8,4 +8,14 @@
 
 import Foundation
 
-final class CreateAccountWorker: CreateAccountWorkingLogic {}
+
+final class CreateAccountWorker: CreateAccountWorkingLogic {
+    func fetch(_ completion: CreateAccount.FetchCompletion?) {
+        let model = CreateAccount.Model(
+            userData: .init(
+                mail:  "",
+                password: "",
+                confirmedPassword: ""))
+        completion?(model)
+    }
+}

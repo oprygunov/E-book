@@ -11,13 +11,19 @@ public class IconCheckView: UIView {
 
     public var hasNumber: Bool = false {
         didSet {
-            checkIcon.image = Image(named: "CheckGreen")
+            if hasNumber { checkIcon.image = Image(named: "CheckGreen")
+            } else {
+                checkIcon.image = Image(named: "Dot-icon")
+            }
         }
     }
 
     public var hasMinimumCharacters: Bool = false {
         didSet {
-            checkIconSecond.image = Image(named: "CheckGreen")
+            if hasMinimumCharacters { checkIconSecond.image = Image(named: "CheckGreen")
+            } else {
+                checkIconSecond.image = Image(named: "Dot-icon")
+            }
         }
     }
     
@@ -30,7 +36,7 @@ public class IconCheckView: UIView {
     private var checkIcon: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = Image(named: "CheckGreen")
+        view.image = Image(named: "Dot-icon")
         return view
     }()
 

@@ -11,6 +11,26 @@ import UIComponents
 
 final class CreateAccountView: View {
 
+    var viewModel: CreateAccount.RootViewModel = .init(
+        userData: .init(
+        mail: "",
+        password: "",
+        confirmedPassword: "",
+        iconHaveNumbers: false,
+        iconMinimumCharacters: false,
+        isEnableButton: false
+        )
+    ) {
+        didSet {
+            mailField.text = viewModel.userData.mail
+            passwordField.text = viewModel.userData.password
+            confirmPasswordField.text = viewModel.userData.confirmedPassword
+            checkView.hasNumber = viewModel.userData.iconHaveNumbers
+            checkView.hasMinimumCharacters = viewModel.userData.iconMinimumCharacters
+            button.isEnabled = viewModel.userData.isEnableButton ?? false
+        }
+    }
+
     public enum Action {
         case close
         case mail(String)
@@ -57,6 +77,8 @@ final class CreateAccountView: View {
             switch action {
             case .text(let text):
                 self.actionHandler(.password(text))
+                print(text)
+
             }
         }
         return view
@@ -65,7 +87,6 @@ final class CreateAccountView: View {
     private let checkView: IconCheckView = {
         let view = IconCheckView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.hasMinimumCharacters = true
         return view
     }()
 
@@ -77,6 +98,7 @@ final class CreateAccountView: View {
             switch action {
             case .text(let text):
                 self.actionHandler(.confirmedPassword(text))
+                print(text)
             }
         }
         return view
@@ -99,6 +121,7 @@ final class CreateAccountView: View {
     private lazy var button: Button = {
         let view = Button(text: "Создать аккаунт", style: .primary, size: .large)
         view.translatesAutoresizingMaskIntoConstraints = false
+//        view.isEnabled = false
         return view
     }()
 

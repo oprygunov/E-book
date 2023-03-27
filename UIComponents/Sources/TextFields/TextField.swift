@@ -68,6 +68,7 @@ public class TextField: UITextField {
         translatesAutoresizingMaskIntoConstraints = false
         rightView = eyeButton
         rightViewMode = .always
+        autocapitalizationType = .none
         textColor = .textFirst
         backgroundColor = .backgroundTabBar
         layer.borderColor = UIColor.buttonOutlineDisable?.cgColor
@@ -82,7 +83,7 @@ public class TextField: UITextField {
                     self.actionHandler(.text(self.text ?? ""))
                 }
             ),
-            for: .allEditingEvents
+            for: .editingChanged
         )
         heightAnchor ~= 44
     }

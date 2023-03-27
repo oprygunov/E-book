@@ -17,12 +17,38 @@ final class CreateAccountViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view = rootView
+        rootView.actionHandler = { action in
+            switch action {
+            case .close:
+                break
+            case .mail(let text):
+                self.interactor?.request(CreateAccount.createLogin.Request(login: text))
+            case .password(let text):
+                self.interactor?.request(CreateAccount.createPassword.Request(password: text))
+            case .confirmedPassword(let text):
+                self.interactor?.request(CreateAccount.confirmPassword.Request(confirmPassword: text))
+            }
+        }
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.interactor?.request(CreateAccount.Fetch.Request())
+    }
 }
 
 extension CreateAccountViewController: CreateAccountDisplayLogic {
-    func display(_ viewModel: CreateAccount.Something.ViewModel) {
 
+    func display(_ viewModel: CreateAccount.Fetch.ViewModel) {
+        rootView.viewModel = viewModel.root
     }
+    func display(_ viewModel: CreateAccount.createLogin.ViewModel) {
+        rootView.viewModel = viewModel.root
+    }
+    func display(_ viewModel: CreateAccount.createPassword.ViewModel) {
+        rootView.viewModel = viewModel.root
+    }
+    func display(_ viewModel: CreateAccount.confirmPassword.ViewModel) {
+        rootView.viewModel = viewModel.root
+    }
+
 }
