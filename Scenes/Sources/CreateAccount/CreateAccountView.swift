@@ -31,7 +31,7 @@ final class CreateAccountView: View {
             confirmedPasswordField.isErrorState = viewModel.userData.isRePasswordErrorState
             checkView.hasNumber = viewModel.userData.iconHaveNumbers
             checkView.hasMinimumCharacters = viewModel.userData.iconMinimumCharacters
-            button.isEnabled = viewModel.userData.isEnableButton ?? false
+            createAccountButton.isEnabled = viewModel.userData.isEnableButton ?? false
         }
     }
 
@@ -41,6 +41,8 @@ final class CreateAccountView: View {
         case password(String)
         case confirmedPassword(String)
         case editEnd
+        case enter
+        case doAccount
     }
 
     public var actionHandler: (Action) -> Void = { _ in }
@@ -124,14 +126,18 @@ final class CreateAccountView: View {
     private lazy var enterButton: Button = {
         let view = Button(text: "Войти", style: .none, size: .none)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.actionHandler = {
+            self.actionHandler(.enter)
+        }
         return view
     }()
 
-    
-    private lazy var button: Button = {
+    private lazy var createAccountButton: Button = {
         let view = Button(text: "Создать аккаунт", style: .primary, size: .large)
         view.translatesAutoresizingMaskIntoConstraints = false
-//        view.isEnabled = false
+        view.actionHandler = {
+            self.actionHandler(.doAccount)
+        }
         return view
     }()
 
@@ -145,7 +151,7 @@ final class CreateAccountView: View {
         addSubview(confirmedPasswordField)
         addSubview(label)
         addSubview(enterButton)
-        addSubview(button)
+        addSubview(createAccountButton)
     }
 
     override func setupLayout() {
@@ -176,10 +182,8 @@ final class CreateAccountView: View {
         enterButton.leftAnchor ~= label.rightAnchor + 4
         enterButton.centerYAnchor ~= label.centerYAnchor
 
-
-        button.leftAnchor ~= leftAnchor + 16
-        button.rightAnchor ~= rightAnchor - 16
-        button.bottomAnchor ~= safeAreaLayoutGuide.bottomAnchor
-
+        createAccountButton.leftAnchor ~= leftAnchor + 16
+        createAccountButton.rightAnchor ~= rightAnchor - 16
+        createAccountButton.bottomAnchor ~= safeAreaLayoutGuide.bottomAnchor
     }
 }

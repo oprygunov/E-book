@@ -23,8 +23,15 @@ enum CreateAccount {
         }
     }
 
+    enum Close {
+        struct Request {}
 
-    enum createLogin {
+        struct Response {}
+
+        struct ViewModel {}
+    }
+
+    enum CreateLogin {
         struct Request {
             var login: String
         }
@@ -41,7 +48,7 @@ enum CreateAccount {
         }
     }
 
-    enum createPassword {
+    enum CreatePassword {
         struct Request {
             var password: String
         }
@@ -59,7 +66,7 @@ enum CreateAccount {
         }
     }
 
-    enum confirmPassword {
+    enum ConfirmPassword {
         struct Request {
             var confirmedPassword: String
         }
@@ -76,6 +83,23 @@ enum CreateAccount {
             var root: CreateAccount.RootViewModel
         }
     }
+
+    enum Enter {
+        struct Request {}
+
+        struct Response {}
+
+        struct ViewModel {}
+    }
+
+    enum DoAccount {
+        struct Request {}
+
+        struct Response {}
+
+        struct ViewModel {}
+    }
+
 
     struct AllFields {
         var mail: Bool

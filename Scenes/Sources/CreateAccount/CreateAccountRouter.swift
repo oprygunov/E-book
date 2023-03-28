@@ -19,7 +19,12 @@ final class CreateAccountRouter {
 }
 
 extension CreateAccountRouter: CreateAccountRoutingLogic {
-    func show() {
+    func close() {
+    }
 
+    func enter() {
+    }
+
+    func doAccount() {
     }
 }

@@ -25,10 +25,14 @@ extension CreateAccountPresenter: CreateAccountPresentationLogic {
             )
         )
     }
-    
-    func present(_ response: CreateAccount.createLogin.Response) {
+
+    func present(_ response: CreateAccount.Close.Response) {
+        view?.display(CreateAccount.Close.ViewModel())
+    }
+
+    func present(_ response: CreateAccount.CreateLogin.Response) {
         view?.display(
-            CreateAccount.createLogin.ViewModel(
+            CreateAccount.CreateLogin.ViewModel(
                 root: .init(
                     userData:
                             .init(
@@ -43,9 +47,9 @@ extension CreateAccountPresenter: CreateAccountPresentationLogic {
         )
     }
 
-    func present(_ response: CreateAccount.createPassword.Response) {
+    func present(_ response: CreateAccount.CreatePassword.Response) {
         view?.display(
-            CreateAccount.createPassword.ViewModel(
+            CreateAccount.CreatePassword.ViewModel(
                 root: .init(
                     userData:
                             .init(
@@ -62,9 +66,9 @@ extension CreateAccountPresenter: CreateAccountPresentationLogic {
         )
     }
 
-    func present(_ response: CreateAccount.confirmPassword.Response) {
+    func present(_ response: CreateAccount.ConfirmPassword.Response) {
         view?.display(
-            CreateAccount.confirmPassword.ViewModel(
+            CreateAccount.ConfirmPassword.ViewModel(
                 root: .init(
                     userData:
                             .init(
@@ -79,6 +83,14 @@ extension CreateAccountPresenter: CreateAccountPresentationLogic {
                 )
             )
         )
+    }
+
+    func present(_ response: CreateAccount.Enter.Response) {
+        view?.display(CreateAccount.Enter.ViewModel())
+    }
+
+    func present(_ response: CreateAccount.DoAccount.Response) {
+        view?.display(CreateAccount.DoAccount.ViewModel())
     }
 }
 

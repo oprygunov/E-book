@@ -52,9 +52,13 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
         }
     }
 
-    func request(_ request: CreateAccount.createLogin.Request) {
+    func request(_ request: CreateAccount.Close.Request) {
+        presenter.present(CreateAccount.Close.Response())
+    }
+
+    func request(_ request: CreateAccount.CreateLogin.Request) {
         self.mail = request.login
-        presenter.present(CreateAccount.createLogin.Response(
+        presenter.present(CreateAccount.CreateLogin.Response(
             model: .init(
                 userData: .init(
                     mail: self.mail,
@@ -68,12 +72,12 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
         )
     }
 
-    func request(_ request: CreateAccount.createPassword.Request) {
+    func request(_ request: CreateAccount.CreatePassword.Request) {
         self.password = request.password
         let hasValidPassword = hasNumber() && hasMinimumCharacters()
         let isErrorState = !hasValidPassword
         presenter.present(
-            CreateAccount.createPassword.Response(
+            CreateAccount.CreatePassword.Response(
                 model: .init(userData: .init(
                     mail: self.mail,
                     password: self.password,
@@ -87,11 +91,11 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
         )
     }
 
-    func request(_ request: CreateAccount.confirmPassword.Request) {
+    func request(_ request: CreateAccount.ConfirmPassword.Request) {
         self.confirmPassword = request.confirmedPassword
         let hasValidPassword = hasNumber() && hasMinimumCharacters() && hasMatchingPasswords()
         let isErrorState = !hasValidPassword
-        presenter.present(CreateAccount.confirmPassword.Response(
+        presenter.present(CreateAccount.ConfirmPassword.Response(
             model: .init(
                 userData: .init(
                     mail: self.mail,
@@ -104,6 +108,14 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
             isRePasswordErrorState: isErrorState
             )
         )
+    }
+
+    func request(_ request: CreateAccount.Enter.Request) {
+        presenter.present(CreateAccount.Enter.Response())
+    }
+
+    func request(_ request: CreateAccount.DoAccount.Request) {
+        presenter.present(CreateAccount.DoAccount.Response())
     }
 }
 
