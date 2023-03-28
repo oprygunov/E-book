@@ -18,13 +18,17 @@ final class CreateAccountView: View {
         confirmedPassword: "",
         iconHaveNumbers: false,
         iconMinimumCharacters: false,
-        isEnableButton: false
+        isEnableButton: false,
+        isPasswordErrorState: false,
+        isRePasswordErrorState: false
         )
     ) {
         didSet {
             mailField.text = viewModel.userData.mail
             passwordField.text = viewModel.userData.password
-            confirmPasswordField.text = viewModel.userData.confirmedPassword
+            passwordField.isErrorState = viewModel.userData.isPasswordErrorState
+            confirmedPasswordField.text = viewModel.userData.confirmedPassword
+            confirmedPasswordField.isErrorState = viewModel.userData.isRePasswordErrorState
             checkView.hasNumber = viewModel.userData.iconHaveNumbers
             checkView.hasMinimumCharacters = viewModel.userData.iconMinimumCharacters
             button.isEnabled = viewModel.userData.isEnableButton ?? false
@@ -36,6 +40,7 @@ final class CreateAccountView: View {
         case mail(String)
         case password(String)
         case confirmedPassword(String)
+        case editEnd
     }
 
     public var actionHandler: (Action) -> Void = { _ in }
@@ -64,6 +69,8 @@ final class CreateAccountView: View {
             case .text(let text):
                 self.actionHandler(.mail(text))
                 print(text)
+            case .editEnd:
+                self.actionHandler(.editEnd)
             }
         }
         return view
@@ -78,7 +85,8 @@ final class CreateAccountView: View {
             case .text(let text):
                 self.actionHandler(.password(text))
                 print(text)
-
+            case .editEnd:
+                self.actionHandler(.editEnd)
             }
         }
         return view
@@ -90,7 +98,7 @@ final class CreateAccountView: View {
         return view
     }()
 
-    private lazy var confirmPasswordField: LoginTextFieldView = {
+    private lazy var confirmedPasswordField: LoginTextFieldView = {
         let view = LoginTextFieldView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.viewModel = .init(placeholderText: "Введите пароль", isEyeIconHidden: false, isSecureText: true, textLabel: "Подтвердите пароль")
@@ -99,6 +107,8 @@ final class CreateAccountView: View {
             case .text(let text):
                 self.actionHandler(.confirmedPassword(text))
                 print(text)
+            case .editEnd:
+                self.actionHandler(.editEnd)
             }
         }
         return view
@@ -132,7 +142,7 @@ final class CreateAccountView: View {
         addSubview(mailField)
         addSubview(passwordField)
         addSubview(checkView)
-        addSubview(confirmPasswordField)
+        addSubview(confirmedPasswordField)
         addSubview(label)
         addSubview(enterButton)
         addSubview(button)
@@ -156,12 +166,12 @@ final class CreateAccountView: View {
         checkView.leftAnchor ~= leftAnchor
         checkView.topAnchor ~= passwordField.bottomAnchor + 9
 
-        confirmPasswordField.topAnchor ~= checkView.bottomAnchor + 19
-        confirmPasswordField.leftAnchor ~= leftAnchor + 16
-        confirmPasswordField.rightAnchor ~= rightAnchor - 16
+        confirmedPasswordField.topAnchor ~= checkView.bottomAnchor + 19
+        confirmedPasswordField.leftAnchor ~= leftAnchor + 16
+        confirmedPasswordField.rightAnchor ~= rightAnchor - 16
 
         label.leftAnchor ~= leftAnchor + 40
-        label.topAnchor ~= confirmPasswordField.bottomAnchor + 26
+        label.topAnchor ~= confirmedPasswordField.bottomAnchor + 26
 
         enterButton.leftAnchor ~= label.rightAnchor + 4
         enterButton.centerYAnchor ~= label.centerYAnchor

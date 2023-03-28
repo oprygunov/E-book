@@ -55,6 +55,7 @@ public class LoginTextFieldView: UIView {
 
     public enum Action {
         case text(String)
+        case editEnd
     }
 
     public var actionHandler: (Action) -> Void = {_ in }
@@ -74,6 +75,8 @@ public class LoginTextFieldView: UIView {
             switch action {
             case .text(let text):
                 self.actionHandler(.text(text))
+            case .editEnd:
+                self.actionHandler(.editEnd)
             }
         }
         return view

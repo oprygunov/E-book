@@ -33,6 +33,7 @@ enum CreateAccount {
             var model: Model
             var hasNumber: Bool
             var hasMinimumCharacters: Bool
+            var hasMatchingPasswords: Bool
         }
 
         struct ViewModel {
@@ -49,6 +50,8 @@ enum CreateAccount {
             var model: Model
             var hasNumber: Bool
             var hasMinimumCharacters: Bool
+            var hasMatchingPasswords: Bool
+            var isPasswordErrorState: Bool
         }
 
         struct ViewModel {
@@ -58,14 +61,15 @@ enum CreateAccount {
 
     enum confirmPassword {
         struct Request {
-            var confirmPassword: String
+            var confirmedPassword: String
         }
 
         struct Response {
             var model: Model
             var hasNumber: Bool
             var hasMinimumCharacters: Bool
-            let hasMatchingPasswords: Bool
+            var hasMatchingPasswords: Bool
+            var isRePasswordErrorState: Bool
         }
 
         struct ViewModel {
@@ -96,6 +100,8 @@ enum CreateAccount {
             var iconHaveNumbers: Bool
             var iconMinimumCharacters: Bool
             var isEnableButton: Bool?
+            var isPasswordErrorState: Bool?
+            var isRePasswordErrorState: Bool?
         }
         var userData: UserDataViewModel
     }

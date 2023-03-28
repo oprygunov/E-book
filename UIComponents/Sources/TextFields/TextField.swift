@@ -33,7 +33,11 @@ public class TextField: UITextField {
 
     public var isErrorState: Bool? {
         didSet {
-            borderColor = .error
+            if isErrorState == true {
+                borderColor = .error
+            } else {
+                borderColor = .buttonOutlineDisable
+            }
         }
     }
 
@@ -45,6 +49,7 @@ public class TextField: UITextField {
 
     enum Action {
         case text(String)
+        case editEnd
     }
 
     var actionHandler: (Action) -> Void = {_ in }
@@ -84,6 +89,14 @@ public class TextField: UITextField {
                 }
             ),
             for: .editingChanged
+        )
+        addAction(
+            UIAction(
+                handler: { _ in
+                    self.actionHandler(.editEnd)
+                }
+            ),
+            for: .editingDidEndOnExit
         )
         heightAnchor ~= 44
     }

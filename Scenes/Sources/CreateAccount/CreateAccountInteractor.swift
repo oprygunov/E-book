@@ -59,40 +59,52 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
                 userData: .init(
                     mail: self.mail,
                     password: self.password,
-                    confirmedPassword: self.confirmPassword)),
+                    confirmedPassword: self.confirmPassword)
+            ),
             hasNumber: self.hasNumber(),
-            hasMinimumCharacters: hasMinimumCharacters()))
+            hasMinimumCharacters: hasMinimumCharacters(),
+            hasMatchingPasswords: hasMatchingPasswords()
+            )
+        )
     }
 
     func request(_ request: CreateAccount.createPassword.Request) {
         self.password = request.password
+        let hasValidPassword = hasNumber() && hasMinimumCharacters()
+        let isErrorState = !hasValidPassword
         presenter.present(
             CreateAccount.createPassword.Response(
                 model: .init(userData: .init(
                     mail: self.mail,
                     password: self.password,
-                    confirmedPassword: self.confirmPassword)),
+                    confirmedPassword: self.confirmPassword)
+                ),
                 hasNumber: self.hasNumber(),
-                hasMinimumCharacters: hasMinimumCharacters()
+                hasMinimumCharacters: self.hasMinimumCharacters(),
+                hasMatchingPasswords: self.hasMatchingPasswords(),
+                isPasswordErrorState: isErrorState
             )
         )
     }
 
     func request(_ request: CreateAccount.confirmPassword.Request) {
-        self.confirmPassword = request.confirmPassword
+        self.confirmPassword = request.confirmedPassword
+        let hasValidPassword = hasNumber() && hasMinimumCharacters() && hasMatchingPasswords()
+        let isErrorState = !hasValidPassword
         presenter.present(CreateAccount.confirmPassword.Response(
             model: .init(
                 userData: .init(
                     mail: self.mail,
                     password: self.password,
-                    confirmedPassword: self.confirmPassword)),
+                    confirmedPassword: self.confirmPassword)
+            ),
             hasNumber: self.hasNumber(),
             hasMinimumCharacters: hasMinimumCharacters(),
-            hasMatchingPasswords: self.hasMatchingPasswords()
-        )
+            hasMatchingPasswords: self.hasMatchingPasswords(),
+            isRePasswordErrorState: isErrorState
+            )
         )
     }
-
 }
 
 extension CreateAccountInteractor: CreateAccountDataStore {}

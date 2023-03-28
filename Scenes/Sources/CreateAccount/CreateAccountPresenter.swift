@@ -53,7 +53,9 @@ extension CreateAccountPresenter: CreateAccountPresentationLogic {
                                 password: response.model.userData.password,
                                 confirmedPassword: response.model.userData.confirmedPassword,
                                 iconHaveNumbers: response.hasNumber,
-                                iconMinimumCharacters: response.hasMinimumCharacters
+                                iconMinimumCharacters: response.hasMinimumCharacters,
+                                isEnableButton: response.hasNumber && response.hasMinimumCharacters && response.hasMatchingPasswords,
+                                isPasswordErrorState: response.isPasswordErrorState
                             )
                 )
             )
@@ -71,7 +73,8 @@ extension CreateAccountPresenter: CreateAccountPresentationLogic {
                                 confirmedPassword: response.model.userData.confirmedPassword,
                                 iconHaveNumbers: response.hasNumber,
                                 iconMinimumCharacters: response.hasMinimumCharacters,
-                                isEnableButton: response.hasNumber && response.hasMinimumCharacters && response.hasMatchingPasswords
+                                isEnableButton: response.hasNumber && response.hasMinimumCharacters && response.hasMatchingPasswords,
+                                isRePasswordErrorState: response.isRePasswordErrorState
                             )
                 )
             )

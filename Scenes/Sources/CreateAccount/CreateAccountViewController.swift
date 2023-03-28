@@ -26,7 +26,9 @@ final class CreateAccountViewController: UIViewController {
             case .password(let text):
                 self.interactor?.request(CreateAccount.createPassword.Request(password: text))
             case .confirmedPassword(let text):
-                self.interactor?.request(CreateAccount.confirmPassword.Request(confirmPassword: text))
+                self.interactor?.request(CreateAccount.confirmPassword.Request(confirmedPassword: text))
+            case .editEnd:
+                break
             }
         }
     }
