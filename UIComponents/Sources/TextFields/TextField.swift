@@ -33,7 +33,11 @@ public class TextField: UITextField {
 
     public var isErrorState: Bool? {
         didSet {
-            borderColor = .error
+            if isErrorState == true {
+                borderColor = .error
+            } else {
+                borderColor = .buttonOutlineDisable
+            }
         }
     }
 
@@ -45,6 +49,7 @@ public class TextField: UITextField {
 
     enum Action {
         case text(String)
+        case editEnd
     }
 
     var actionHandler: (Action) -> Void = {_ in }
@@ -68,6 +73,7 @@ public class TextField: UITextField {
         translatesAutoresizingMaskIntoConstraints = false
         rightView = eyeButton
         rightViewMode = .always
+        autocapitalizationType = .none
         textColor = .textFirst
         backgroundColor = .backgroundTabBar
         layer.borderColor = UIColor.buttonOutlineDisable?.cgColor
@@ -82,7 +88,15 @@ public class TextField: UITextField {
                     self.actionHandler(.text(self.text ?? ""))
                 }
             ),
-            for: .allEditingEvents
+            for: .editingChanged
+        )
+        addAction(
+            UIAction(
+                handler: { _ in
+                    self.actionHandler(.editEnd)
+                }
+            ),
+            for: .editingDidEndOnExit
         )
         heightAnchor ~= 44
     }
