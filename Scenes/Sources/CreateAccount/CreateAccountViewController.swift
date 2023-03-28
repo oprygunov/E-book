@@ -12,7 +12,7 @@ final class CreateAccountViewController: UIViewController {
     var interactor: CreateAccountBusinessLogic?
     var router: CreateAccountRoutingLogic?
 
-    private let rootView = CreateAccountView()
+    private lazy var rootView = CreateAccountView()
 
     override func loadView() {
         super.loadView()
