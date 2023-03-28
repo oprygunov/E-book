@@ -20,7 +20,7 @@ final class WelcomeRouter {
 
 extension WelcomeRouter: WelcomeRoutingLogic {
     func registration() {
-
+        viewController?.navigationController?.pushViewController(SignUpBuilder.build(), animated: true)
     }
     
     func login() {

@@ -28,6 +28,7 @@ public class Button: UIControl {
     public var textColor: UIColor? {
         didSet {
             title.textColor = textColor
+            image.tintColor = textColor
         }
     }
     

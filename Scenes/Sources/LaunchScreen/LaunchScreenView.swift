@@ -68,7 +68,7 @@ final class LaunchScreenView: View {
     override func setupLayout() {
         super.setupLayout()
 
-        stackView.topAnchor ~= safeAreaLayoutGuide.topAnchor + 310
+        stackView.topAnchor ~= centerYAnchor - 52
         stackView.leftAnchor ~= leftAnchor + 52
         stackView.rightAnchor ~= rightAnchor - 52
     }
