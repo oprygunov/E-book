@@ -184,6 +184,8 @@ final class CreateAccountView: View {
 
         createAccountButton.leftAnchor ~= leftAnchor + 16
         createAccountButton.rightAnchor ~= rightAnchor - 16
-        createAccountButton.bottomAnchor ~= safeAreaLayoutGuide.bottomAnchor
+        createAccountButton.bottomAnchor <= bottomAnchor - 16
+        let bottom = createAccountButton.bottomAnchor ~= safeAreaLayoutGuide.bottomAnchor
+        bottom.priority = .defaultHigh
     }
 }

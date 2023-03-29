@@ -26,5 +26,6 @@ extension CreateAccountRouter: CreateAccountRoutingLogic {
     }
 
     func doAccount() {
+        viewController?.navigationController?.pushViewController(YourNameBuilder.build(), animated: true)
     }
 }
