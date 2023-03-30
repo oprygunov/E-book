@@ -9,15 +9,21 @@
 import Foundation
 
 protocol YourNameBusinessLogic: AnyObject {
-    func request(_ request: YourName.Something.Request)
+    func request(_ request: YourName.Fetch.Request)
+    func request(_ request: YourName.NameText.Request)
+    func request(_ request: YourName.SaveName.Request)
 }
 
 protocol YourNamePresentationLogic: AnyObject {
-    func present(_ response: YourName.Something.Response)
+    func present(_ response: YourName.Fetch.Response)
+    func present(_ response: YourName.NameText.Response)
+    func present(_ response: YourName.SaveName.Response)
 }
 
 protocol YourNameDisplayLogic: AnyObject {
-    func display(_ viewModel: YourName.Something.ViewModel)
+    func display(_ viewModel: YourName.Fetch.ViewModel)
+    func display(_ viewModel: YourName.NameText.ViewModel)
+    func display(_ viewModel: YourName.SaveName.ViewModel)
 }
 
 protocol YourNameRoutingLogic: AnyObject {
@@ -26,4 +32,7 @@ protocol YourNameRoutingLogic: AnyObject {
 
 protocol YourNameDataStore: AnyObject {}
 
-protocol YourNameWorkingLogic: AnyObject {}
+protocol YourNameWorkingLogic: AnyObject {
+    func fetch(_ completion: YourName.Completion?)
+    func save(save: String, _ completion: YourName.SaveCompletion?)
+}

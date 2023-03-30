@@ -11,8 +11,19 @@ import UIComponents
 
 final class YourNameView: View {
 
+    var viewModel: YourName.RootViewModel = .init(
+        name: "",
+        isEnableButton: false
+    ) {
+        didSet {
+            textField.text = viewModel.name
+            saveButton.isEnabled = viewModel.isEnableButton ?? false
+        }
+    }
+
     enum Action {
         case save
+        case name(String)
     }
 
     var actionHandler: (Action) -> Void = { _ in }
@@ -36,7 +47,19 @@ final class YourNameView: View {
 
     private lazy var textField: LoginTextFieldView = {
         let view = LoginTextFieldView()
-        view.viewModel = .init(placeholderText: "Ваше имя", isEyeIconHidden: true, isSecureText: false)
+        view.viewModel = .init(
+            placeholderText: "Ваше имя",
+            isEyeIconHidden: true,
+            isSecureText: false)
+        view.actionHandler = { action in
+            switch action {
+            case .text(let text):
+                self.actionHandler(.name(text))
+                print(text)
+            case .editEnd(let text):
+                break
+            }
+        }
         return view
     }()
 
