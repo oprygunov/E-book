@@ -58,7 +58,6 @@ extension SelectionGenresInteractor: SelectionGenresBusinessLogic {
     }
     
     func request(_ request: SelectionGenres.Continue.Request) {
-        print("fdfdf")
         guard let model = self.model else { return }
         worker.apply(selectedGenres: model.selectedGenres) {
             DispatchQueue.main.async {
