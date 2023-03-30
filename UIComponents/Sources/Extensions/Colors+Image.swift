@@ -77,6 +77,12 @@ public extension UIColor {
     static var textSecond: UIColor? {
         .init(named: "textSecond", in: Bundle.module, compatibleWith: nil)
     }
+    static var textChip: UIColor? {
+        .init(named: "textChip", in: Bundle.module, compatibleWith: nil)
+    }
+    static var textChipSelected: UIColor? {
+        .init(named: "textChipSelected", in: Bundle.module, compatibleWith: nil)
+    }
 }
 
 public func Image(named name: String) -> UIImage? {
