@@ -17,13 +17,7 @@ final class CreateAccountPresenter {
 extension CreateAccountPresenter: CreateAccountPresentationLogic {
 
     func present(_ response: CreateAccount.Fetch.Response) {
-        view?.display(
-            CreateAccount.Fetch.ViewModel(
-                root: response.model.viewModel(
-                    hasMinimumCharacters: response.hasMinimumCharacters,
-                    hasNumber: response.hasNumber)
-            )
-        )
+        view?.display(CreateAccount.Fetch.ViewModel())
     }
 
     func present(_ response: CreateAccount.Close.Response) {
@@ -40,7 +34,8 @@ extension CreateAccountPresenter: CreateAccountPresentationLogic {
                                 password: response.model.userData.password,
                                 confirmedPassword: response.model.userData.confirmedPassword,
                                 iconHaveNumbers: response.hasNumber,
-                                iconMinimumCharacters: response.hasMinimumCharacters
+                                iconMinimumCharacters: response.hasMinimumCharacters,
+                                isEnableButton: response.hasNumber && response.hasMinimumCharacters && response.hasMatchingPasswords
                             )
                 )
             )
@@ -102,8 +97,7 @@ private extension CreateAccount.Model {
                 password: userData.password,
                 confirmedPassword: userData.confirmedPassword,
                 iconHaveNumbers: hasNumber,
-                iconMinimumCharacters: hasMinimumCharacters,
-                isEnableButton: false
+                iconMinimumCharacters: hasMinimumCharacters
             )
         )
     }

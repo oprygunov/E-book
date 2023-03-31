@@ -45,7 +45,6 @@ final class CreateAccountViewController: UIViewController {
 extension CreateAccountViewController: CreateAccountDisplayLogic {
 
     func display(_ viewModel: CreateAccount.Fetch.ViewModel) {
-        rootView.viewModel = viewModel.root
     }
     func display(_ viewModel: CreateAccount.Close.ViewModel) {
         router?.close()

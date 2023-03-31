@@ -17,10 +17,6 @@ final class YourNamePresenter {
 extension YourNamePresenter: YourNamePresentationLogic {
 
     func present(_ response: YourName.Fetch.Response) {
-        view?.display(
-            YourName.Fetch.ViewModel(
-                root: response.model.viewModel(hasNotEmpty: false))
-        )
     }
     
     func present(_ response: YourName.NameText.Response) {

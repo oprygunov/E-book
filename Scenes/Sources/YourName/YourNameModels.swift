@@ -13,13 +13,9 @@ enum YourName {
     enum Fetch {
         struct Request {}
 
-        struct Response {
-            var model: Model
-        }
+        struct Response {}
 
-        struct ViewModel {
-            var root: RootViewModel
-        }
+        struct ViewModel {}
     }
 
     enum NameText {
@@ -54,6 +50,5 @@ enum YourName {
         var isEnableButton: Bool?
     }
 
-    typealias Completion = (Model) -> Void
     typealias SaveCompletion = () -> Void
 }

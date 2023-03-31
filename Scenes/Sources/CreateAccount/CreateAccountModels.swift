@@ -12,15 +12,9 @@ enum CreateAccount {
     enum Fetch {
         struct Request {}
 
-        struct Response {
-            var model: Model
-            var hasNumber: Bool
-            var hasMinimumCharacters: Bool
-        }
+        struct Response {}
 
-        struct ViewModel {
-            var root: CreateAccount.RootViewModel
-        }
+        struct ViewModel {}
     }
 
     enum Close {
@@ -100,13 +94,6 @@ enum CreateAccount {
         struct ViewModel {}
     }
 
-
-    struct AllFields {
-        var mail: Bool
-        var password: Bool
-        var confirmedPassword: Bool
-    }
-
     struct Model {
         struct UserDataModel {
             var mail: String
@@ -130,5 +117,5 @@ enum CreateAccount {
         var userData: UserDataViewModel
     }
 
-    typealias FetchCompletion = (Model) -> Void
+    typealias SaveCompletion = () -> Void
 }

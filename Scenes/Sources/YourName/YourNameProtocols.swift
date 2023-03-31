@@ -27,12 +27,11 @@ protocol YourNameDisplayLogic: AnyObject {
 }
 
 protocol YourNameRoutingLogic: AnyObject {
-    func show()
+    func save()
 }
 
 protocol YourNameDataStore: AnyObject {}
 
 protocol YourNameWorkingLogic: AnyObject {
-    func fetch(_ completion: YourName.Completion?)
     func save(save: String, _ completion: YourName.SaveCompletion?)
 }

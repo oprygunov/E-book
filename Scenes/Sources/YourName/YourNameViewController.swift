@@ -35,13 +35,11 @@ final class YourNameViewController: UIViewController {
 extension YourNameViewController: YourNameDisplayLogic {
 
     func display(_ viewModel: YourName.Fetch.ViewModel) {
-        rootView.viewModel = viewModel.root
     }
 
     func display(_ viewModel: YourName.NameText.ViewModel) {
         rootView.viewModel = viewModel.root
     }
     func display(_ viewModel: YourName.SaveName.ViewModel) {
-//        router.save
     }
 }

@@ -20,6 +20,7 @@ final class CreateAccountRouter {
 
 extension CreateAccountRouter: CreateAccountRoutingLogic {
     func close() {
+        viewController?.navigationController?.popViewController(animated: true)
     }
 
     func enter() {
