@@ -49,7 +49,7 @@ public class TextField: UITextField {
 
     enum Action {
         case text(String)
-        case editEnd
+        case editEnd(String)
     }
 
     var actionHandler: (Action) -> Void = {_ in }
@@ -93,7 +93,7 @@ public class TextField: UITextField {
         addAction(
             UIAction(
                 handler: { _ in
-                    self.actionHandler(.editEnd)
+                    self.actionHandler(.editEnd(self.text ?? ""))
                 }
             ),
             for: .editingDidEndOnExit

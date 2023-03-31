@@ -47,6 +47,5 @@ protocol CreateAccountRoutingLogic: AnyObject {
 protocol CreateAccountDataStore: AnyObject {}
 
 protocol CreateAccountWorkingLogic: AnyObject {
-    func fetch(_ completion: CreateAccount.FetchCompletion?)
-
+    func create(mail: String, password: String , _ completion: CreateAccount.SaveCompletion?)
 }

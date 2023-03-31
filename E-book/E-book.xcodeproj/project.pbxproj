@@ -13,6 +13,7 @@
 		8231FBD229CAFC0300028C83 /* CeraPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8231FBD029CAFC0300028C83 /* CeraPro-Bold.ttf */; };
 		8231FBD529CAFC7900028C83 /* PTRootUI-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8231FBD329CAFC7900028C83 /* PTRootUI-Regular.ttf */; };
 		8231FBD629CAFC7900028C83 /* PTRootUI-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8231FBD429CAFC7900028C83 /* PTRootUI-Medium.ttf */; };
+		824D8CD229D48FAF0008B7EA /* SharedModels in Frameworks */ = {isa = PBXBuildFile; productRef = 824D8CD129D48FAF0008B7EA /* SharedModels */; };
 		CED5CF8129C99A2F0003137B /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = CED5CF8029C99A2F0003137B /* UIComponents */; };
 		CEDA642829C9951900CFCAC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA642729C9951900CFCAC4 /* AppDelegate.swift */; };
 		CEDA642A29C9951900CFCAC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA642929C9951900CFCAC4 /* SceneDelegate.swift */; };
@@ -49,6 +50,7 @@
 		8231FBD029CAFC0300028C83 /* CeraPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CeraPro-Bold.ttf"; sourceTree = "<group>"; };
 		8231FBD329CAFC7900028C83 /* PTRootUI-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Regular.ttf"; sourceTree = "<group>"; };
 		8231FBD429CAFC7900028C83 /* PTRootUI-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTRootUI-Medium.ttf"; sourceTree = "<group>"; };
+		824D8CD029D48BAA0008B7EA /* SharedModels */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SharedModels; sourceTree = "<group>"; };
 		CED5CF7F29C999F10003137B /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UIComponents; path = ../../UIComponents; sourceTree = "<group>"; };
 		CEDA642429C9951900CFCAC4 /* E-book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "E-book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDA642729C9951900CFCAC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CED5CF8129C99A2F0003137B /* UIComponents in Frameworks */,
+				824D8CD229D48FAF0008B7EA /* SharedModels in Frameworks */,
 				CEDA645D29C997CA00CFCAC4 /* Scenes in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +132,7 @@
 		CEDA642629C9951900CFCAC4 /* E-book */ = {
 			isa = PBXGroup;
 			children = (
+				824D8CD029D48BAA0008B7EA /* SharedModels */,
 				CEDA645A29C9978600CFCAC4 /* Scenes */,
 				CED5CF7F29C999F10003137B /* UIComponents */,
 				CEDA642729C9951900CFCAC4 /* AppDelegate.swift */,
@@ -185,6 +189,7 @@
 			packageProductDependencies = (
 				CEDA645C29C997CA00CFCAC4 /* Scenes */,
 				CED5CF8029C99A2F0003137B /* UIComponents */,
+				824D8CD129D48FAF0008B7EA /* SharedModels */,
 			);
 			productName = "E-book";
 			productReference = CEDA642429C9951900CFCAC4 /* E-book.app */;
@@ -636,6 +641,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		824D8CD129D48FAF0008B7EA /* SharedModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedModels;
+		};
 		CED5CF8029C99A2F0003137B /* UIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIComponents;

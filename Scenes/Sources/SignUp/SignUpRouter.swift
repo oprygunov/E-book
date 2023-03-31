@@ -28,7 +28,7 @@ extension SignUpRouter: SignUpRoutingLogic {
     }
     
     func createAccount() {
-        
+        viewController?.navigationController?.pushViewController(CreateAccountBuilder.build(), animated: true)
     }
     
     func termsOfUse() {
