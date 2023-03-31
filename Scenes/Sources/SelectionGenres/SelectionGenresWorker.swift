@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SharedModels
 
 final class SelectionGenresWorker: SelectionGenresWorkingLogic {
     func fetch(_ completion: SelectionGenres.Completion?) {
@@ -37,7 +38,7 @@ final class SelectionGenresWorker: SelectionGenresWorkingLogic {
             .init(id: 23, genres: "Казахское программирование"),
         ]
         
-        completion?(.success(.init(genres: items, selectedGenres: [], userName: "Oleg")))
+        completion?(.success(.init(genres: items, selectedGenres: [], userName: SharedProfile.shared.profile?.name ?? "")))
     }
     
     func apply(selectedGenres: Set<Int>, completion: SelectionGenres.EmptyCompletion?) {

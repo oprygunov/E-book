@@ -20,6 +20,6 @@ final class YourNameRouter {
 
 extension YourNameRouter: YourNameRoutingLogic {
     func save() {
-
+        viewController?.navigationController?.pushViewController(SelectionGenresBuilder.build(), animated: true)
     }
 }

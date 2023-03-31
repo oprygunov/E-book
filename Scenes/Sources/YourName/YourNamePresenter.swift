@@ -31,6 +31,7 @@ extension YourNamePresenter: YourNamePresentationLogic {
         )
     }
     func present(_ response: YourName.SaveName.Response) {
+        view?.display(YourName.SaveName.ViewModel())
     }
 }
 

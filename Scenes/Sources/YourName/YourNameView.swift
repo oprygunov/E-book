@@ -84,6 +84,7 @@ final class YourNameView: View {
         view.actionHandler = {
             self.actionHandler(.save)
         }
+        view.isEnabled = false
         return view
     }()
 

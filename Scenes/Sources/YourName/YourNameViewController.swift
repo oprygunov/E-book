@@ -41,5 +41,6 @@ extension YourNameViewController: YourNameDisplayLogic {
         rootView.viewModel = viewModel.root
     }
     func display(_ viewModel: YourName.SaveName.ViewModel) {
+        router?.save()
     }
 }
