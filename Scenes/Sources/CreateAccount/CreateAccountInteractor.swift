@@ -36,6 +36,7 @@ final class CreateAccountInteractor {
 extension CreateAccountInteractor: CreateAccountBusinessLogic {
 
     func request(_ request: CreateAccount.Fetch.Request) {
+        presenter.present(CreateAccount.Fetch.Response())
     }
 
     func request(_ request: CreateAccount.Close.Request) {
@@ -44,8 +45,7 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
 
     func request(_ request: CreateAccount.CreateLogin.Request) {
         self.mail = request.login
-        DispatchQueue.main.async {
-            self.presenter.present(CreateAccount.CreateLogin.Response(
+            presenter.present(CreateAccount.CreateLogin.Response(
                 model: .init(
                     userData: .init(
                         mail: self.mail,
@@ -55,18 +55,15 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
                 hasNumber: self.hasNumber(),
                 hasMinimumCharacters: self.hasMinimumCharacters(),
                 hasMatchingPasswords: self.hasMatchingPasswords()
+                )
             )
-            )
-        }
-
     }
 
     func request(_ request: CreateAccount.CreatePassword.Request) {
         self.password = request.password
-        DispatchQueue.main.async {
-            let hasValidPassword = self.hasNumber() && self.hasMinimumCharacters()
+            let hasValidPassword = hasNumber() && hasMinimumCharacters()
             let isErrorState = !hasValidPassword
-            self.presenter.present(
+            presenter.present(
                 CreateAccount.CreatePassword.Response(
                     model: .init(
                         userData: .init(
@@ -78,17 +75,15 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
                     hasMinimumCharacters: self.hasMinimumCharacters(),
                     hasMatchingPasswords: self.hasMatchingPasswords(),
                     isPasswordErrorState: isErrorState
+                    )
                 )
-            )
-        }
     }
 
     func request(_ request: CreateAccount.ConfirmPassword.Request) {
         self.confirmPassword = request.confirmedPassword
-        DispatchQueue.main.async {
-            let hasValidPassword = self.hasNumber() && self.hasMinimumCharacters() && self.hasMatchingPasswords()
+            let hasValidPassword = hasNumber() && hasMinimumCharacters() && hasMatchingPasswords()
             let isErrorState = !hasValidPassword
-            self.presenter.present(
+            presenter.present(
                 CreateAccount.ConfirmPassword.Response(
                     model:  .init(
                         userData: .init(
@@ -102,7 +97,6 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
                     isRePasswordErrorState: isErrorState
                 )
             )
-        }
     }
 
     func request(_ request: CreateAccount.Enter.Request) {
@@ -113,7 +107,8 @@ extension CreateAccountInteractor: CreateAccountBusinessLogic {
     func request(_ request: CreateAccount.DoAccount.Request) {
         worker.create(mail: self.mail, password: self.password) {
             DispatchQueue.main.async {
-                self.presenter.present(CreateAccount.DoAccount.Response()
+                self.presenter.present(
+                    CreateAccount.DoAccount.Response()
                 )
             }
         }

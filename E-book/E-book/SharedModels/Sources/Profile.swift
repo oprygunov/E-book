@@ -25,6 +25,7 @@ public struct UserProfile {
         }
 }
 
+//нужно перенести
 public class SharedProfile {
     public static var shared = SharedProfile()
 

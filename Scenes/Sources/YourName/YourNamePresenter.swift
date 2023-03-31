@@ -17,6 +17,7 @@ final class YourNamePresenter {
 extension YourNamePresenter: YourNamePresentationLogic {
 
     func present(_ response: YourName.Fetch.Response) {
+        view?.display(YourName.Fetch.ViewModel())
     }
     
     func present(_ response: YourName.NameText.Response) {

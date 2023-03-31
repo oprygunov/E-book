@@ -26,6 +26,7 @@ final class YourNameInteractor {
 extension YourNameInteractor: YourNameBusinessLogic {
 
     func request(_ request: YourName.Fetch.Request) {
+        presenter.present(YourName.Fetch.Response())
     }
     
     func request(_ request: YourName.NameText.Request) {
