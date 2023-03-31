@@ -138,8 +138,8 @@ final class LaunchScreenView: View {
                         rectangles[2].layer.cornerRadius = 5
                         rectangles[2].backgroundColor = .buttonActive
                     },
-                                   completion: { _ in
-                        self.animateRectangles()
+                                   completion: { [weak self] _ in
+                        self?.animateRectangles()
                     })
                 })
             })
